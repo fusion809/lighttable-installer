@@ -12,7 +12,7 @@ This repository contains a series of installer scripts for [LightTable IDE](http
 * [Ubuntu](http://www.ubuntu.com/) (and its major derivatives, including [Linux Mint](https://linuxmint.com/))
 
 ## Use
-It has a [`quick-install.sh`](https://github.com/fusion809/lighttable-installer/blob/master/quick-install.sh) script that can be launched via running (assuming cURL is installed):
+It has a [`quick-install.sh`](/quick-install.sh) script that can be launched via running (assuming cURL is installed):
 
 ```bash
 /bin/bash -c "$(curl -sL https://git.io/vr3pT)"
