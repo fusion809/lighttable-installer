@@ -3,8 +3,14 @@ printf "Do you want to install Brackets from A) a binary package (faster) or wou
 read preference
 
 sudo apt-get install -y curl
-curl -sL http://mirror.optus.net/ubuntu/pool/main/u/udev/libudev0_175-0ubuntu9_i386.deb > $HOME/Programs/libudev0_175-0ubuntu9_i386.deb
-sudo dpkg -i $HOME/Programs/libudev0_175-0ubuntu9_i386.deb
+
+if ! [[ -d $HOME/Programs ]]; then
+  mkdir $HOME/Programs
+fi
+
+curl -sL http://mirror.optus.net/ubuntu/pool/main/u/udev/libudev0_175-0ubuntu9_amd64.deb > $HOME/Programs/libudev0_175-0ubuntu9_amd64.deb
+sudo dpkg -i $HOME/Programs/libudev0_175-0ubuntu9_amd64.deb
+sudo apt-get -f install
 
 if [[ $preference == "A" ]]; then
 
