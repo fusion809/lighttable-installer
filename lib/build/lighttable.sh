@@ -1,16 +1,17 @@
 #!/bin/bash
 function LightTable-build {
+  export pkgname=lighttable
+  export pkgver=$(sed -n 's/pkgver=//p' /tmp/$pkgname/PKGBUILD)
+  export _destdir=/opt/LightTable
   export GHUB="$HOME/GitHub"
-  export INSTALLER="https://github.com/fusion809/lighttable-installer/raw/master/resources"
+  export INSTALLER="https://github.com/fusion809/$pkgname-installer/raw/master/resources"
 
-  if ! [[ -d /tmp/lighttable ]]; then
-    git clone https://aur.archlinux.org/lighttable.git /tmp/lighttable
+  if ! [[ -d /tmp/$pkgname ]]; then
+    git clone https://aur.archlinux.org/$pkgname.git /tmp/$pkgname
   else
-    cd /tmp/lighttable
+    cd /tmp/$pkgname
     git pull origin master
   fi
-  ver=$(sed -n 's/pkgver=//p' /tmp/lighttable/PKGBUILD)
-
 
   # Get the source code
   printf "How would you like to get the source code? [curl/git/wget/?] "
@@ -27,10 +28,10 @@ function LightTable-build {
   read $DEST_TYPE
 
   if [[ $DEST_TYPE == "local" ]]; then
-    printf "Where do you want to install LightTable? [default is $SRC_DEST/builds/lighttable-$ver-linux] "
+    printf "Where do you want to install LightTable? [default is $SRC_DEST/builds/$pkgname-$pkgver-linux] "
     read $INST_DEST
     if [[ -n $INST_DEST ]]; then
-      INST_DEST=$SRC_DEST/builds/lighttable-$ver-linux
+      INST_DEST=$SRC_DEST/builds/$pkgname-$pkgver-linux
     fi
   fi
 
@@ -41,19 +42,19 @@ function LightTable-build {
 
   elif [[ $SRC_METHOD == "curl" ]]; then
 
-    if [[ -d $SRC_DEST/LightTable-$ver ]]; then
-      rm -rf $SRC_DEST/LightTable-$ver
+    if [[ -d $SRC_DEST/LightTable-$pkgver ]]; then
+      rm -rf $SRC_DEST/LightTable-$pkgver
     fi
-    curl -sL https://github.com/LightTable/LightTable/archive/$ver.tar.gz | tar xz -C $SRC_DEST
-    cd $SRC_DEST/LightTable-$ver
+    curl -sL https://github.com/LightTable/LightTable/archive/$pkgver.tar.gz | tar xz -C $SRC_DEST
+    cd $SRC_DEST/LightTable-$pkgver
 
   elif [[ $SRC_METHOD == "wget" ]]; then
 
-    if [[ -d $SRC_DEST/LightTable-$ver ]]; then
-      rm -rf $SRC_DEST/LightTable-$ver
+    if [[ -d $SRC_DEST/LightTable-$pkgver ]]; then
+      rm -rf $SRC_DEST/LightTable-$pkgver
     fi
-    wget -cqO- https://github.com/LightTable/LightTable/archive/$ver.tar.gz | tar xz -C $SRC_DEST
-    cd $SRC_DEST/LightTable-$ver
+    wget -cqO- https://github.com/LightTable/LightTable/archive/$pkgver.tar.gz | tar xz -C $SRC_DEST
+    cd $SRC_DEST/LightTable-$pkgver
 
   elif [[ $SRC_METHOD == "git" ]]; then
     if ! [[ -d $SRC_DEST/LightTable ]]; then
@@ -78,30 +79,38 @@ function LightTable-build {
   lein
 
   # Build LightTable
-  cd $SRC_DEST/LightTable*
+  cd $SRC_DEST/LightTable-$pkgver
   script/build.sh
 
   if [[ $DEST_TYPE == "local" ]]; then
-    wget -cqO- $INSTALLER/lighttable > $INST_DEST/lighttable
-    wget -cqO- $INSTALLER/lighttable.png > $INST_DEST/lighttable.png
-    wget -cqO- $INSTALLER/lighttable.desktop > $INST_DEST/lighttable.desktop
-    wget -cqO- $INSTALLER/LICENSE > $INST_DEST/LICENSE
-  else
-    _destdir=/opt/LightTable
-    sudo install -dm755 $_destdir
-    sudo cp -a builds/lighttable-*-linux/* $_destdir
 
-    wget -cqO- $INSTALLER/lighttable > $SRC_DEST/lighttable
-    wget -cqO- $INSTALLER/lighttable.png > $SRC_DEST/lighttable.png
-    wget -cqO- $INSTALLER/lighttable.desktop > $SRC_DEST/lighttable.desktop
+    wget -cqO- $INSTALLER/$pkgname > $INST_DEST/$pkgname
+    wget -cqO- $INSTALLER/$pkgname.png > $INST_DEST/$pkgname.png
+    wget -cqO- $INSTALLER/$pkgname.desktop > $INST_DEST/$pkgname.desktop
+    wget -cqO- $INSTALLER/LICENSE > $INST_DEST/LICENSE
+
+    if ! [[ $INST_DEST == "$SRC_DEST/builds/$pkgname-$pkgver-linux" ]]; then
+      sudo cp -a builds/$pkgname-$pkgver-linux/* $INST_DEST
+    fi
+
+    sed -i -e "s|/opt/LightTable|$INST_DEST|g" $INST_DEST/$pkgname.desktop
+
+  else
+
+    sudo install -dm755 $_destdir
+    sudo cp -a builds/$pkgname-$pkgver-linux/* $_destdir
+
+    wget -cqO- $INSTALLER/$pkgname > $SRC_DEST/$pkgname
+    wget -cqO- $INSTALLER/$pkgname.png > $SRC_DEST/$pkgname.png
+    wget -cqO- $INSTALLER/$pkgname.desktop > $SRC_DEST/$pkgname.desktop
     wget -cqO- $INSTALLER/LICENSE > $SRC_DEST/LICENSE
 
-    sudo install -Dm 755 "$SRC_DEST/lighttable" "/usr/bin/lighttable"
-    sudo install -dm755 "/usr/share/licenses/lighttable"
-    sudo install -Dm 644 "$SRC_DEST/LICENSE" "/usr/share/licenses/lighttable/LICENSE"
+    sudo install -Dm 755 "$SRC_DEST/$pkgname" "/usr/bin/$pkgname"
+    sudo install -dm755 "/usr/share/licenses/$pkgname"
+    sudo install -Dm 644 "$SRC_DEST/LICENSE" "/usr/share/licenses/$pkgname/LICENSE"
 
-    sudo install -Dm 644 "$SRC_DEST/lighttable.desktop" "/usr/share/applications/lighttable.desktop"
-    sudo install -Dm 644 "$SRC_DEST/lighttable.png" "/usr/share/pixmaps/lighttable.png"
+    sudo install -Dm 644 "$SRC_DEST/$pkgname.desktop" "/usr/share/applications/$pkgname.desktop"
+    sudo install -Dm 644 "$SRC_DEST/$pkgname.png" "/usr/share/pixmaps/$pkgname.png"
   fi
 }
 
