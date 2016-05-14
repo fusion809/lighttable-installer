@@ -1,6 +1,6 @@
 #!/bin/bash
 function dest {
-  printf "Where do you want to store the downloaded files? [Leavy empty for $1] "
+  printf "Where do you want to store the downloaded files? [Leave empty for $1] "
   read SRC_DEST
 
   printf "Do you want to install LightTable locally or system-wide? [local/system; default is system] "
