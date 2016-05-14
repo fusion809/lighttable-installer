@@ -22,7 +22,8 @@ export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g'
 
 ######################################################################################################
 
-source "./lib/test.sh"                        # Load the test functions
+source "./lib/test.sh"                        # Load the test function
+source "./lib/method.sh"                      # Load the method function
 source "./lib/lighttable-binary.sh"
 
 # Load the distribution-specific libraries

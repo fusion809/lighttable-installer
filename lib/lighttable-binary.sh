@@ -2,6 +2,7 @@
 function lighttable-binary {
   export PRG="$HOME/Programs"
   export INSTALLER="https://github.com/fusion809/lighttable-installer/raw/master/resources"
+
   printf "Where do you want to store the unpacked binary? [Leavy empty for $PRG] "
   read SRC_DEST
 
@@ -19,6 +20,7 @@ function lighttable-binary {
     cd /tmp/lighttable
     git pull origin master
   fi
+  
   pkgname=lighttable
   pkgver=$(sed -n 's/pkgver=//p' /tmp/lighttable/PKGBUILD)
   _destdir="/opt/LightTable"

@@ -1,5 +1,6 @@
-printf "Do you want to install LightTable from A) a binary package (faster) or would you prefer B) a source install (slower)? [A/B; B is the default] "
-read preference
+#!/bin/bash
+
+method
 
 if [[ $preference == "A" ]]; then
 

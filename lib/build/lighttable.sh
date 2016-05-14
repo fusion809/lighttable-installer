@@ -3,6 +3,15 @@ function LightTable-build {
   export GHUB="$HOME/GitHub"
   export INSTALLER="https://github.com/fusion809/lighttable-installer/raw/master/resources"
 
+  if ! [[ -d /tmp/lighttable ]]; then
+    git clone https://aur.archlinux.org/lighttable.git /tmp/lighttable
+  else
+    cd /tmp/lighttable
+    git pull origin master
+  fi
+  ver=$(sed -n 's/pkgver=//p' /tmp/lighttable/PKGBUILD)
+
+
   # Get the source code
   printf "How would you like to get the source code? [curl/git/wget/?] "
   read SRC_METHOD
@@ -14,13 +23,16 @@ function LightTable-build {
     SRC_DEST=$GHUB
   fi
 
-  if ! [[ -d /tmp/lighttable ]]; then
-    git clone https://aur.archlinux.org/lighttable.git /tmp/lighttable
-  else
-    cd /tmp/lighttable
-    git pull origin master
+  printf "Do you want to install LightTable locally or system-wide? [local/system; default is system] "
+  read $DEST_TYPE
+
+  if [[ $DEST_TYPE == "local" ]]; then
+    printf "Where do you want to install LightTable? [default is $SRC_DEST/builds/lighttable-$ver-linux] "
+    read $INST_DEST
+    if [[ -n $INST_DEST ]]; then
+      INST_DEST=$SRC_DEST/builds/lighttable-$ver-linux
+    fi
   fi
-  ver=$(sed -n 's/pkgver=//p' /tmp/lighttable/PKGBUILD)
 
   if [[ $SRC_METHOD == "?" ]]; then
 
@@ -65,23 +77,32 @@ function LightTable-build {
   export PATH=$PATH:$HOME/bin
   lein
 
-  _destdir=/opt/LightTable
+  # Build LightTable
   cd $SRC_DEST/LightTable*
   script/build.sh
-  sudo install -dm755 $_destdir
-  sudo cp -a builds/lighttable-*-linux/* $_destdir
 
-  wget -cqO- $INSTALLER/lighttable > $SRC_DEST/lighttable
-  wget -cqO- $INSTALLER/lighttable.png > $SRC_DEST/lighttable.png
-  wget -cqO- $INSTALLER/lighttable.desktop > $SRC_DEST/lighttable.desktop
-  wget -cqO- $INSTALLER/LICENSE > $SRC_DEST/LICENSE
+  if [[ $DEST_TYPE == "local" ]]; then
+    wget -cqO- $INSTALLER/lighttable > $INST_DEST/lighttable
+    wget -cqO- $INSTALLER/lighttable.png > $INST_DEST/lighttable.png
+    wget -cqO- $INSTALLER/lighttable.desktop > $INST_DEST/lighttable.desktop
+    wget -cqO- $INSTALLER/LICENSE > $INST_DEST/LICENSE
+  else
+    _destdir=/opt/LightTable
+    sudo install -dm755 $_destdir
+    sudo cp -a builds/lighttable-*-linux/* $_destdir
 
-  sudo install -Dm 755 "$SRC_DEST/lighttable" "/usr/bin/lighttable"
-  sudo install -dm755 "/usr/share/licenses/lighttable"
-  sudo install -Dm 644 "$SRC_DEST/LICENSE" "/usr/share/licenses/lighttable/LICENSE"
+    wget -cqO- $INSTALLER/lighttable > $SRC_DEST/lighttable
+    wget -cqO- $INSTALLER/lighttable.png > $SRC_DEST/lighttable.png
+    wget -cqO- $INSTALLER/lighttable.desktop > $SRC_DEST/lighttable.desktop
+    wget -cqO- $INSTALLER/LICENSE > $SRC_DEST/LICENSE
 
-  sudo install -Dm 644 "$SRC_DEST/lighttable.desktop" "/usr/share/applications/lighttable.desktop"
-  sudo install -Dm 644 "$SRC_DEST/lighttable.png" "/usr/share/pixmaps/lighttable.png"
+    sudo install -Dm 755 "$SRC_DEST/lighttable" "/usr/bin/lighttable"
+    sudo install -dm755 "/usr/share/licenses/lighttable"
+    sudo install -Dm 644 "$SRC_DEST/LICENSE" "/usr/share/licenses/lighttable/LICENSE"
+
+    sudo install -Dm 644 "$SRC_DEST/lighttable.desktop" "/usr/share/applications/lighttable.desktop"
+    sudo install -Dm 644 "$SRC_DEST/lighttable.png" "/usr/share/pixmaps/lighttable.png"
+  fi
 }
 
 export -f LightTable-build

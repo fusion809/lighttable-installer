@@ -6,8 +6,7 @@ if comex lighttable; then                       # Check if LightTable is already
 
 else
 
-  printf "Would you rather install LightTable from: A) a binary tarball (faster) or B) from source (slower)? [A/B; B is the default] "
-  read preference
+  method
 
   if [[ $preference == "A" ]]; then
     lightaur
