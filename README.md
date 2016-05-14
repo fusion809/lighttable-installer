@@ -1,4 +1,5 @@
 # LightTable Installer
+<p><img src="/images/VirtualBox_Linux_Mint_17.3-LightTable.png" alt="LightTable 0.8.1 running on Linux Mint"><caption><b>Figure 1: LightTable 0.8.1 running on Linux Mint, which was installed using this very installer.</b></caption></p>
 This repository contains a series of installer scripts for [LightTable IDE](http://www.lighttable.com) on Linux. It supports a wide variety of different Linux distributions, including:
 
 * [Arch Linux](https://www.archlinux.org)
