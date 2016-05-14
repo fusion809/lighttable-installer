@@ -1,7 +1,7 @@
 #!/bin/bash
-. ./lib/lighttable-build.sh
+. ./lib/build/lighttable.sh
 
-function ubuntu-build {
+function debian-build {
   # Get dependencies
   sudo apt-get install -y curl
   curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
@@ -10,4 +10,4 @@ function ubuntu-build {
   LightTable-build
 }
 
-export -f ubuntu-build
+export -f debian-build

@@ -1,3 +1,4 @@
+#!/bin/bash
 function LightTable-build {
   export GHUB="$HOME/GitHub"
   export INSTALLER="https://github.com/fusion809/lighttable-installer/raw/master/resources"

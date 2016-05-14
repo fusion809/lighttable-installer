@@ -10,7 +10,7 @@ LightTable from the available binary or from source code.
 it will install LightTable from it.
 
 3. If option 1 or 2 are not possible, or if you opted to install LightTable from source code it will
-run the `./lib/lighttable-build.sh` script after installing any missing build/runtime dependencies
+run the `./lib/build/lighttable.sh` script after installing any missing build/runtime dependencies
 for LightTable
 
 Note it will NOT install LightTable from unofficial binaries or repositories.'

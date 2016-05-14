@@ -1,5 +1,5 @@
 #!/bin/bash
-. ./lib/lighttable-build.sh
+. ./lib/build/lighttable.sh
 
 function fedora-build {
   # Get dependencies

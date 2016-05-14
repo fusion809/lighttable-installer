@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./lib/lighttable-build.sh
+. ./lib/build/lighttable.sh
 . ./lib/test.sh
 
 function lightin {

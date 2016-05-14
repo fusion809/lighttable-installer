@@ -1,6 +1,6 @@
 #!/bin/bash
-. ./lib/lighttable-build.sh
-. ./lib/node-build.sh
+. ./lib/build/lighttable.sh
+. ./lib/build/node.sh
 
 function mageia-build {
   # Get dependencies
