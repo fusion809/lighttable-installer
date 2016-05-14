@@ -67,6 +67,7 @@ function LightTable-build {
   lein
 
   cd $SRC_DEST/LightTable
+  script/build.sh
 }
 
 export -f LightTable-build
