@@ -8,6 +8,10 @@ function lighttable-binary {
     SRC_DEST=$PRG
   fi
 
+  if [[ $SRC_DEST == "$PRG" ]]; then
+    mkdir $PRG
+  fi
+
   if ! [[ -d /tmp/lighttable ]]; then
     git clone https://aur.archlinux.org/lighttable.git /tmp/lighttable
   else
