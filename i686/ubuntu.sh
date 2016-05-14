@@ -1,5 +1,5 @@
 #!/bin/bash
-printf "Do you want to install Brackets from A) a binary package (faster) or would you prefer B) a source install (slower)? [A/B; B is the default] "
+printf "Do you want to install LightTable from A) a binary package (faster) or would you prefer B) a source install (slower)? [A/B; B is the default] "
 read preference
 
 sudo apt-get install -y curl
