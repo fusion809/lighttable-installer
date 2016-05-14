@@ -36,3 +36,5 @@ function lighttable-binary {
   sudo install -Dm 644 "$SRC_DEST/lighttable.png" "/usr/share/pixmaps/lighttable.png"
 
 }
+
+export -f lighttable-binary
