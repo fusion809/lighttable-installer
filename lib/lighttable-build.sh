@@ -61,7 +61,7 @@ function LightTable-build {
   if ! [[ -d $HOME/bin ]]; then
     mkdir -p $HOME/bin
   fi
-  curl -sL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > $HOME/bin
+  curl -sL https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein > $HOME/bin/lein
   chmod +x $HOME/bin/lein
   export PATH=$PATH:$HOME/bin
   lein
