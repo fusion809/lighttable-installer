@@ -1,6 +1,7 @@
 #!/bin/bash
 function lighttable-binary {
-  export PRG=$HOME/Programs
+  export PRG="$HOME/Programs"
+  export INSTALLER="https://github.com/fusion809/lighttable-installer/raw/master/resources"
   printf "Where do you want to store the unpacked binary? [Leavy empty for $PRG] "
   read SRC_DEST
 
@@ -24,10 +25,10 @@ function lighttable-binary {
 
   wget -cqO- https://github.com/LightTable/LightTable/releases/download/$ver/$pkgname-$pkgver-linux.tar.gz | tar xz -C $SRC_DEST
 
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable > $SRC_DEST/lighttable
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable.png > $SRC_DEST/lighttable.png
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable.desktop > $SRC_DEST/lighttable.desktop
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/LICENSE > $SRC_DEST/LICENSE
+  wget -cqO- $INSTALLER/lighttable > $SRC_DEST/lighttable
+  wget -cqO- $INSTALLER/lighttable.png > $SRC_DEST/lighttable.png
+  wget -cqO- $INSTALLER/lighttable.desktop > $SRC_DEST/lighttable.desktop
+  wget -cqO- $INSTALLER/LICENSE > $SRC_DEST/LICENSE
 
   sudo install -Dm 755 "$SRC_DEST/lighttable" "/usr/bin/lighttable"
   sudo install -dm755 "/usr/share/licenses/lighttable"

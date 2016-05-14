@@ -11,6 +11,7 @@ This repository contains a series of installer scripts for [LightTable IDE](http
 * [Sabayon Linux](http://www.sabayon.org/)
 * [Ubuntu](http://www.ubuntu.com/) (and its major derivatives, including [Linux Mint](https://linuxmint.com/))
 
+## Use
 It has a [`quick-install.sh`](https://github.com/fusion809/lighttable-installer/blob/master/quick-install.sh) script that can be launched via running (assuming cURL is installed):
 
 ```bash
@@ -23,5 +24,8 @@ or (assuming wget is installed):
 /bin/bash -c "$(wget -cqO- https://git.io/vr3pT)"
 ```
 
+## Contributing
+For details on how to contribute to this project please see the [CONTRIBUTING.md](https://github.com/fusion809/lighttable-installer/blob/master/CONTRIBUTING.md) file.
+
 ## License
-The contents of this repository are licensed under the GNU GPLv3 license, found in [LICENSE.md](/LICENSE.md). The [LICENSE](/LICENSE) file pertains to LightTable, not to the installer.
+The contents of this repository are licensed under the GNU GPLv3 license, found in [LICENSE](/LICENSE).

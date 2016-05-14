@@ -1,5 +1,6 @@
 function LightTable-build {
-  export GHUB=$HOME/GitHub
+  export GHUB="$HOME/GitHub"
+  export INSTALLER="https://github.com/fusion809/lighttable-installer/raw/master/resources"
 
   # Get the source code
   printf "How would you like to get the source code? [curl/git/wget/?] "
@@ -69,10 +70,10 @@ function LightTable-build {
   sudo install -dm755 $_destdir
   sudo cp -a builds/lighttable-*-linux/* $_destdir
 
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable > $SRC_DEST/lighttable
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable.png > $SRC_DEST/lighttable.png
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable.desktop > $SRC_DEST/lighttable.desktop
-  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/LICENSE > $SRC_DEST/LICENSE
+  wget -cqO- $INSTALLER/lighttable > $SRC_DEST/lighttable
+  wget -cqO- $INSTALLER/lighttable.png > $SRC_DEST/lighttable.png
+  wget -cqO- $INSTALLER/lighttable.desktop > $SRC_DEST/lighttable.desktop
+  wget -cqO- $INSTALLER/LICENSE > $SRC_DEST/LICENSE
 
   sudo install -Dm 755 "$SRC_DEST/lighttable" "/usr/bin/lighttable"
   sudo install -dm755 "/usr/share/licenses/lighttable"
