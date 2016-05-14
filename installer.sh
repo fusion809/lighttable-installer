@@ -24,10 +24,10 @@ export VER=$(cat /etc/os-release | grep -w "VERSION_ID" | sed 's/VERSION_ID=//g'
 
 source "./lib/test.sh"                        # Load the test function
 source "./lib/method.sh"                      # Load the method function
-source "./lib/dest.sh"
-source "./lib/version.sh"
-source "./lib/install.sh"
-source "./lib/lighttable-binary.sh"
+source "./lib/dest.sh"                        # Load the dest function
+source "./lib/version.sh"                     # Load the version function
+source "./lib/install.sh"                     # Load the install function
+source "./lib/binary.sh"                      # Load the binary function
 
 # Load the distribution-specific libraries
 if [[ $LD == "Arch Linux" ]] || [[ $LD == "Manjaro"* ]]; then
