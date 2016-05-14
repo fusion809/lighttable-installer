@@ -11,7 +11,7 @@ function LightTable-build {
   if ! [[ -n $SRC_DEST ]]; then
     SRC_DEST=$GHUB
   fi
-  
+
   if ! [[ -d /tmp/lighttable ]]; then
     git clone https://aur.archlinux.org/lighttable.git /tmp/lighttable
   else
@@ -64,7 +64,7 @@ function LightTable-build {
   lein
 
   _destdir=/opt/LightTable
-  cd $SRC_DEST/LightTable
+  cd $SRC_DEST/LightTable*
   script/build.sh
   sudo install -dm755 $_destdir
   sudo cp -a builds/lighttable-*-linux/* $_destdir
