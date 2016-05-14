@@ -25,7 +25,7 @@ or (assuming wget is installed):
 ```
 
 ## Contributing
-For details on how to contribute to this project please see the [CONTRIBUTING.md](https://github.com/fusion809/lighttable-installer/blob/master/CONTRIBUTING.md) file.
+For details on how to contribute to this project please see the [CONTRIBUTING.md](/CONTRIBUTING.md) file.
 
 ## License
 The contents of this repository are licensed under the GNU GPLv3 license, found in [LICENSE](/LICENSE).
