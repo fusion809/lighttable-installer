@@ -1,39 +1,12 @@
 #!/bin/bash
 function lighttable-binary {
   export pkgname=lighttable
-  export pkgver=$(sed -n 's/pkgver=//p' /tmp/$pkgname/PKGBUILD)
+  version $pkgname
   export _destdir="/opt/LightTable"
   export PRG="$HOME/Programs"
   export INSTALLER="https://github.com/fusion809/$pkgname-installer/raw/master/resources"
 
-  printf "Where do you want to store the unpacked binary? [Leavy empty for $PRG] "
-  read SRC_DEST
-
-  printf "Do you want to install LightTable locally or system-wide? [local/system; default is system] "
-  read $DEST_TYPE
-
-  if [[ $DEST_TYPE == "local" ]]; then
-    printf "Where do you want to install LightTable? [default is $SRC_DEST/builds/$pkgname-$pkgver-linux] "
-    read $INST_DEST
-    if [[ -n $INST_DEST ]]; then
-      INST_DEST=$SRC_DEST/builds/$pkgname-$pkgver-linux
-    fi
-  fi
-
-  if ! [[ -n $SRC_DEST ]]; then
-    SRC_DEST=$PRG
-  fi
-
-  if [[ $SRC_DEST == "$PRG" ]]; then
-    mkdir $PRG
-  fi
-
-  if ! [[ -d /tmp/$pkgname ]]; then
-    git clone https://aur.archlinux.org/$pkgname.git /tmp/$pkgname
-  else
-    cd /tmp/$pkgname
-    git pull origin master
-  fi
+  dest $PRG
 
   if [[ $DEST_TYPE == "local" ]]; then
     wget -cqO- $INSTALLER/$pkgname > $INST_DEST/$pkgname

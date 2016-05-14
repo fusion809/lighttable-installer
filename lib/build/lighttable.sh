@@ -1,39 +1,16 @@
 #!/bin/bash
 function LightTable-build {
   export pkgname=lighttable
-  export pkgver=$(sed -n 's/pkgver=//p' /tmp/$pkgname/PKGBUILD)
+  version $pkgname
   export _destdir=/opt/LightTable
   export GHUB="$HOME/GitHub"
   export INSTALLER="https://github.com/fusion809/$pkgname-installer/raw/master/resources"
-
-  if ! [[ -d /tmp/$pkgname ]]; then
-    git clone https://aur.archlinux.org/$pkgname.git /tmp/$pkgname
-  else
-    cd /tmp/$pkgname
-    git pull origin master
-  fi
 
   # Get the source code
   printf "How would you like to get the source code? [curl/git/wget/?] "
   read SRC_METHOD
 
-  printf "Where do you want to store the source code? [Leavy empty for $GHUB] "
-  read SRC_DEST
-
-  if ! [[ -n $SRC_DEST ]]; then
-    SRC_DEST=$GHUB
-  fi
-
-  printf "Do you want to install LightTable locally or system-wide? [local/system; default is system] "
-  read $DEST_TYPE
-
-  if [[ $DEST_TYPE == "local" ]]; then
-    printf "Where do you want to install LightTable? [default is $SRC_DEST/builds/$pkgname-$pkgver-linux] "
-    read $INST_DEST
-    if [[ -n $INST_DEST ]]; then
-      INST_DEST=$SRC_DEST/builds/$pkgname-$pkgver-linux
-    fi
-  fi
+  dest $GHUB
 
   if [[ $SRC_METHOD == "?" ]]; then
 
