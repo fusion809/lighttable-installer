@@ -54,7 +54,7 @@ DISTROS=(
 'CentOS'                                    #  CentOS
 'Debian'                                    #  Debian
 'Fedora'                                    #  Fedora
-'Mageia'
+'Mageia'                                    #  Mageia
 'Manjaro'                                   #  Manjaro Linux
 'openSUSE'                                  #  openSUSE
 'Sabayon'                                   #  Sabayon Linux
