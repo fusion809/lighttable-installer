@@ -12,7 +12,7 @@ function LightTable-build {
     SRC_DEST=$GHUB
   fi
 
-  printf "Do you want to install Atom locally or system-wide? [local/system, default: system] "
+  printf "Do you want to install LightTable locally or system-wide? [local/system, default: system] "
   read DEST_TYPE
 
   if ! [[ -d /tmp/lighttable ]]; then
@@ -66,8 +66,23 @@ function LightTable-build {
   export PATH=$PATH:$HOME/bin
   lein
 
+  _destdir=/opt/LightTable
   cd $SRC_DEST/LightTable
   script/build.sh
+  sudo install -dm755 $_destdir
+  sudo cp -a builds/lighttable-*-linux/* $_destdir
+
+  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable > $SRC_DEST/lighttable
+  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable.png > $SRC_DEST/lighttable.png
+  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/lighttable.desktop > $SRC_DEST/lighttable.desktop
+  wget -cqO- https://github.com/fusion809/lighttable-installer/raw/master/LICENSE > $SRC_DEST/LICENSE
+
+  sudo install -Dm 755 "$SRC_DEST/lighttable" "/usr/bin/lighttable"
+  sudo install -dm755 "/usr/share/licenses/lighttable"
+  sudo install -Dm 644 "$SRC_DEST/LICENSE" "/usr/share/licenses/lighttable/LICENSE"
+
+  sudo install -Dm 644 "$SRC_DEST/lighttable.desktop" "/usr/share/applications/lighttable.desktop"
+  sudo install -Dm 644 "$SRC_DEST/lighttable.png" "/usr/share/pixmaps/lighttable.png"
 }
 
 export -f LightTable-build
