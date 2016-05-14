@@ -8,7 +8,7 @@ function lighttable-binary {
 
   dest $PRG
 
-  wget -cqO- https://github.com/LightTable/LightTable/releases/download/$pkgver/lighttable-$pkgver-linux.tar.gz | tar xz -C $SRC_DEST
+  wget -cqO- https://github.com/LightTable/LightTable/releases/download/$pkgver/$pkgname-$pkgver-linux.tar.gz | tar xz -C $SRC_DEST
   light-install
 
 }
