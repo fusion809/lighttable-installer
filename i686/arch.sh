@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if comex lighttable; then                       # Check if Atom is already installed
+if comex lighttable; then                       # Check if LightTable is already installed
 
   printf "LightTable is already installed!"
 
