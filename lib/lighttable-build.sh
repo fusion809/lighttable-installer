@@ -11,10 +11,7 @@ function LightTable-build {
   if ! [[ -n $SRC_DEST ]]; then
     SRC_DEST=$GHUB
   fi
-
-  printf "Do you want to install LightTable locally or system-wide? [local/system, default: system] "
-  read DEST_TYPE
-
+  
   if ! [[ -d /tmp/lighttable ]]; then
     git clone https://aur.archlinux.org/lighttable.git /tmp/lighttable
   else
