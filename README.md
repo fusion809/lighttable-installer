@@ -1,6 +1,9 @@
 # LightTable Installer
 <p><img src="/images/VirtualBox_Linux_Mint_17.3-LightTable.png" alt="LightTable 0.8.1 running on Linux Mint"><caption><b>Figure 1: LightTable 0.8.1 running on Linux Mint, which was installed using this very installer.</b></caption></p>
-This repository contains a series of installer scripts for [LightTable IDE](http://www.lighttable.com) on Linux. It supports a wide variety of different Linux distributions, including:
+This repository contains a series of installer scripts for [LightTable IDE](http://www.lighttable.com) on Linux.
+
+## Supported Distributions
+It supports a wide variety of different Linux distributions, including:
 
 * [Arch Linux](https://www.archlinux.org)
 * [CentOS](https://www.centos.org/)
@@ -11,6 +14,8 @@ This repository contains a series of installer scripts for [LightTable IDE](http
 * [openSUSE](https://www.opensuse.org/)
 * [Sabayon Linux](http://www.sabayon.org/)
 * [Ubuntu](http://www.ubuntu.com/) (and its major derivatives, including [Linux Mint](https://linuxmint.com/))
+
+The way it detects the operating system it is being run on is by reading the `/etc/os-release` file. So, if you find that running `cat /etc/os-release | grep -w "NAME" | sed 's/NAME=//g' | sed 's/"//g'` returns the distribution names given above, your distribution should be supported by this installer.
 
 ## Use
 It has a [`quick-install.sh`](/quick-install.sh) script that can be launched via running (assuming cURL is installed):
