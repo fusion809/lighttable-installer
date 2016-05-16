@@ -1,10 +1,7 @@
 #!/bin/bash
 function light-install {
   if [[ $DEST_TYPE == "local" ]]; then
-    wget -cqO- $INSTALLER/$pkgname > $INST_DEST/$pkgname
-    wget -cqO- $INSTALLER/$pkgname.png > $INST_DEST/$pkgname.png
-    wget -cqO- $INSTALLER/$pkgname.desktop > $INST_DEST/$pkgname.desktop
-    wget -cqO- $INSTALLER/LICENSE > $INST_DEST/LICENSE
+    cp $INSTALLER/{$pkgname,$pkgname.png,$pkgname.desktop,LICENSE} $INST_DEST
 
     if ! [[ $INST_DEST == "$SRC_DEST/builds/$pkgname-$pkgver-linux" ]]; then
       sudo cp -a builds/$pkgname-$pkgver-linux/* $INST_DEST
@@ -16,10 +13,7 @@ function light-install {
     sudo install -dm755 $_destdir
     sudo cp -a builds/$pkgname-$pkgver-linux/* $_destdir
 
-    wget -cqO- $INSTALLER/$pkgname > $SRC_DEST/$pkgname
-    wget -cqO- $INSTALLER/$pkgname.png > $SRC_DEST/$pkgname.png
-    wget -cqO- $INSTALLER/$pkgname.desktop > $SRC_DEST/$pkgname.desktop
-    wget -cqO- $INSTALLER/LICENSE > $SRC_DEST/LICENSE
+    cp $INSTALLER/{$pkgname,$pkgname.png,$pkgname.desktop,LICENSE} $SRC_DEST
 
     sudo install -Dm 755 "$SRC_DEST/$pkgname" "/usr/bin/$pkgname"
     sudo install -dm755 "/usr/share/licenses/$pkgname"

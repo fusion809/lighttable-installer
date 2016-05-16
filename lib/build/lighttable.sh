@@ -4,7 +4,7 @@ function LightTable-build {
   version $pkgname
   export _destdir=/opt/LightTable
   export GHUB="$HOME/GitHub"
-  export INSTALLER="https://github.com/fusion809/$pkgname-installer/raw/master/resources"
+  export INSTALLER=$INDIR/resources
 
   # Get the source code
   printf "How would you like to get the source code? [curl/git/wget/?] "
