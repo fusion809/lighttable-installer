@@ -15,7 +15,7 @@ if [[ -d $GHUBM ]]; then
   cd $GHUBM
 
   if ! [[ -d $GHUBM/lighttable-installer ]]; then                                                  # Get the repository, if necessary
-    printf "Getting the lighttable-installer repository locally ==>\n"
+    printf "Getting the lighttable-installer repository locally. ==>\n"
 
     ## git
     if which git >/dev/null 2>&1; then
@@ -30,30 +30,22 @@ if [[ -d $GHUBM ]]; then
       wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUBM
     fi
   else
-    printf "The lighttable-installer repository is already locally present! "
-    printf "\n"
-    printf "Update your local copy? [y/n] "
-    read yn
-    if [[ $yn == "y" ]]; then
+    printf "Updating your local copy of lighttable-installer. ==>\n"
+    ## git
+    if [[ -d $GHUBM/lighttable-installer/.git ]]; then
+      cd $GHUBM/lighttable-installer
+      git pull origin master
+      cd .
 
-      ## git
-      if [[ -d $GHUBM/lighttable-installer/.git ]]; then
-        cd $GHUBM/lighttable-installer
-        git pull origin master
-        cd .
+    ## cURL
+    elif which curl >/dev/null 2>&1; then
+      rm -rf $GHUBM/lighttable-installer
+      curl -sL $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUBM
 
-      ## cURL
-      elif which curl >/dev/null 2>&1; then
-        rm -rf $GHUBM/lighttable-installer
-        curl -sL $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUBM
-
-      ## wget
-      elif which wget >/dev/null 2>&1; then
-        rm -rf $GHUBM/lighttable-installer
-        wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUBM
-      fi
-    else
-      printf "Suit yourself!"
+    ## wget
+    elif which wget >/dev/null 2>&1; then
+      rm -rf $GHUBM/lighttable-installer
+      wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUBM
     fi
 
   fi
@@ -62,7 +54,7 @@ else
   cd $GHUB
 
   if ! [[ -d $GHUB/lighttable-installer ]]; then                                                  # Get the repository, if necessary
-    printf "Getting the lighttable-installer repository locally ==>\n"
+    printf "Getting the lighttable-installer repository locally. ==>\n"
 
     ## git
     if which git >/dev/null 2>&1; then
@@ -77,32 +69,24 @@ else
       wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUB
     fi
   else
-    printf "The lighttable-installer repository is already locally present! "
-    printf "\n"
-    printf "Update your local copy? [y/n] "
-    read yn
-    if [[ $yn == "y" ]]; then
+    printf "Updating your local copy of lighttable-installer. ==>\n"
 
-      ## git
-      if [[ -d $GHUB/lighttable-installer/.git ]]; then
-        cd $GHUB/lighttable-installer
-        git pull origin master
-        cd .
+    ## git
+    if [[ -d $GHUB/lighttable-installer/.git ]]; then
+      cd $GHUB/lighttable-installer
+      git pull origin master
+      cd .
 
-      ## cURL
-      elif which curl >/dev/null 2>&1; then
-        rm -rf $GHUB/lighttable-installer
-        curl -sL $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUB
+    ## cURL
+    elif which curl >/dev/null 2>&1; then
+      rm -rf $GHUB/lighttable-installer
+      curl -sL $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUB
 
-      ## wget
-      elif which wget >/dev/null 2>&1; then
-        rm -rf $GHUB/lighttable-installer
-        wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUB
-      fi
-    else
-      printf "Suit yourself!"
+    ## wget
+    elif which wget >/dev/null 2>&1; then
+      rm -rf $GHUB/lighttable-installer
+      wget -cqO- $REPO/archive/master.tar.gz | tar xz --transform=s/lighttable-installer-master/lighttable-installer/ -C $GHUB
     fi
-
   fi
 
 fi
