@@ -51,7 +51,7 @@ elif [[ $LD == "openSUSE"* ]]; then
   source "lib/build/opensuse.sh"
 elif [[ $LD == "Sabayon"* ]]; then
   source "lib/build/sabayon.sh"
-elif [[ $LD == "Ubuntu" ]]; then
+elif [[ $LD == "Ubuntu" ]] || [[ $LD == "Zorin OS" ]]; then
   source "lib/build/ubuntu.sh"
 fi
 
@@ -66,6 +66,7 @@ DISTROS=(
 'openSUSE'                                  #  openSUSE
 'Sabayon'                                   #  Sabayon Linux
 'Ubuntu'                                    #  Ubuntu
+'Zorin OS'                                  #  Zorin OS
 )
 
 for I in "${DISTROS[@]}"                    # Run the appropriate script, for the distro and architecture
@@ -74,6 +75,8 @@ do                                          # we're on
   if [[ $LD == "$I"* ]]; then
     if [[ $i == "manjaro" ]]; then
       ./$ARCH/arch.sh
+    elif [[ $i == "zorin-os" ]]; then
+      ./$ARCH/ubuntu.sh
     else
       ./$ARCH/${i}.sh
     fi
