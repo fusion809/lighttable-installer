@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if comex lighttable; then                       # Check if LightTable is already installed
+if comex $lowedit; then                       # Check if LightTable is already installed
 
-  printf "LightTable is already installed!"
+  printf "$EDIT is already installed!"
 
 else
 
@@ -11,7 +11,7 @@ else
   if [[ $preference == "A" ]]; then
     lightaur
   else
-    lighttable_build
+    ${lowedit}_build
   fi
 
 fi

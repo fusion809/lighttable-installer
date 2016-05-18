@@ -15,10 +15,10 @@ fi
 if [[ $preference == "A" ]]; then
 
   cd /etc/yum.repos.d/
-  wget -cqO- https://copr.fedorainfracloud.org/coprs/mosquito/lighttable/repo/epel-7/mosquito-lighttable-epel-7.repo > /tmp/mosquito-lighttable-epel-7.repo
-  sudo mv /tmp/mosquito-lighttable-epel-7.repo /etc/yum.repos.d/
+  wget -cqO- https://copr.fedorainfracloud.org/coprs/mosquito/$lowedit/repo/epel-7/mosquito-$lowedit-epel-7.repo > /tmp/mosquito-$lowedit-epel-7.repo
+  sudo mv /tmp/mosquito-$lowedit-epel-7.repo /etc/yum.repos.d/
   sudo yum update
-  sudo yum install -y lighttable
+  sudo yum install -y $lowedit
   cd -
 
 else

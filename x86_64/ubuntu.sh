@@ -15,7 +15,7 @@ sudo apt-get -f install
 if [[ $preference == "A" ]]; then
 
   sudo apt-get install -y alsa-lib nss libgnome-keyring-dev fakeroot libgtk2.0-dev
-  lighttable_binary
+  ${lowedit}_binary
 
 else
 

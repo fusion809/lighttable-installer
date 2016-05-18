@@ -4,9 +4,9 @@ method
 
 if [[ $preference == "A" ]]; then
 
-  sudo dnf copr enable mosquito/lighttable
+  sudo dnf copr enable mosquito/${lowedit}
   sudo dnf update
-  sudo dnf install -y lighttable
+  sudo dnf install -y ${lowedit}
 
 else
 
