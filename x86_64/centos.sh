@@ -23,6 +23,6 @@ if [[ $preference == "A" ]]; then
 
 else
 
-  centos-build
+  centos_build
 
 fi

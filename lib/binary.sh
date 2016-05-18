@@ -1,5 +1,5 @@
 #!/bin/bash
-function lighttable-binary {
+function lighttable_binary {
   export pkgname=lighttable
   version $pkgname
   export _destdir="/opt/LightTable"
@@ -9,8 +9,8 @@ function lighttable-binary {
   dest $PRG
 
   wget -cqO- https://github.com/LightTable/LightTable/releases/download/$pkgver/$pkgname-$pkgver-linux.tar.gz | tar xz -C $SRC_DEST
-  light-install
+  light_install
 
 }
 
-export -f lighttable-binary
+export -f lighttable_binary

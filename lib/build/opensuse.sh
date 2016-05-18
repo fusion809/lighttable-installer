@@ -1,7 +1,7 @@
 #!/bin/bash
 . ./lib/build/lighttable.sh
 
-function opensuse-build {
+function opensuse_build {
   # Get dependencies
   OSVER=$(lsb_release -r | sed 's/Release:\s*//g')
   if [[ $OSVER == "42.1" ]]; then
@@ -13,7 +13,7 @@ function opensuse-build {
   fi
   sudo zypper in -y nodejs nodejs-devel make gcc gcc-c++ glibc-devel \
     git-core libgnome-keyring-devel gtk2-devel
-  LightTable-build
+  LightTable_build
 }
 
-export -f opensuse-build
+export -f opensuse_build

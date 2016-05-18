@@ -15,10 +15,10 @@ sudo apt-get -f install
 if [[ $preference == "A" ]]; then
 
   sudo apt-get install -y alsa-lib nss libgnome-keyring-dev fakeroot libgtk2.0-dev
-  lighttable-binary
+  lighttable_binary
 
 else
 
-  ubuntu-build
+  ubuntu_build
 
 fi

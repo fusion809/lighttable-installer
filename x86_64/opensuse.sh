@@ -5,10 +5,10 @@ method
 if [[ $preference == "A" ]]; then
 
   sudo zypper in -y libgnome-keyring-devel gtk2-devel
-  lighttable-binary
+  lighttable_binary
 
 else
 
-  opensuse-build
+  opensuse_build
 
 fi

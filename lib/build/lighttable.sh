@@ -1,5 +1,5 @@
 #!/bin/bash
-function LightTable-build {
+function LightTable_build {
   export pkgname=lighttable
   version $pkgname
   export _destdir=/opt/LightTable
@@ -60,7 +60,7 @@ function LightTable-build {
   script/build.sh
 
   # Install it
-  light-install
+  light_install
 }
 
-export -f LightTable-build
+export -f LightTable_build

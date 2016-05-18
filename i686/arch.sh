@@ -11,7 +11,7 @@ else
   if [[ $preference == "A" ]]; then
     lightaur
   else
-    lighttable-build
+    lighttable_build
   fi
 
 fi

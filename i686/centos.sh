@@ -14,10 +14,10 @@ fi
 if [[ $preference == "A" ]]; then
 
   sudo yum install -y wget alsa-lib nss libgnome-keyring-devel gtk2-devel
-  lighttable-binary
+  lighttable_binary
 
 else
 
-  centos-build
+  centos_build
 
 fi

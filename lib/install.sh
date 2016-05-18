@@ -1,5 +1,5 @@
 #!/bin/bash
-function light-install {
+function light_install {
   if [[ $DEST_TYPE == "local" ]]; then
     cp $INSTALLER/{$pkgname,$pkgname.png,$pkgname.desktop,LICENSE} $INST_DEST
 
@@ -24,4 +24,4 @@ function light-install {
   fi
 }
 
-export -f light-install
+export -f light_install
