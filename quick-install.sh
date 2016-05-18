@@ -52,6 +52,9 @@ if [[ -d $GHUBM ]]; then
 
   fi
 
+  cd $GHUBM/$lowedit-installer
+  ./installer.sh
+  
 else
   cd $GHUB
 
@@ -91,14 +94,7 @@ else
     fi
   fi
 
-fi
-###########################################################################################################################################
-
-# Run the main installer script
-if [[ -d $GHUB/$lowedit-installer ]]; then
   cd $GHUB/$lowedit-installer
   ./installer.sh
-elif [[ -d $GHUBM/$lowedit-installer ]]; then
-  cd $GHUBM/$lowedit-installer
-  ./installer.sh
+
 fi
